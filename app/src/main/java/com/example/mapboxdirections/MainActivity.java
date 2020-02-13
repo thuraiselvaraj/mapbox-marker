@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Parcel;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineListener;
 import com.mapbox.android.core.location.LocationEnginePriority;
@@ -19,6 +21,7 @@ import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
+import com.mapbox.mapboxsdk.annotations.BaseMarkerOptions;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
@@ -33,12 +36,14 @@ import com.mapbox.services.android.navigation.ui.v5.NavigationLauncher;
 import com.mapbox.services.android.navigation.ui.v5.NavigationLauncherOptions;
 import com.mapbox.services.android.navigation.ui.v5.route.NavigationMapRoute;
 import com.mapbox.services.android.navigation.v5.navigation.NavigationRoute;
+import com.mapbox.mapboxsdk.annotations.IconFactory;
+import com.mapbox.mapboxsdk.annotations.Icon;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity  implements OnMapReadyCallback, LocationEngineListener, PermissionsListener,
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, LocationEngineListener, PermissionsListener,
         MapboxMap.OnMapClickListener {
     private MapView mapView;
     private MapboxMap map;
@@ -78,21 +83,22 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
 
     @Override
     public void onMapReady(MapboxMap mapboxMap) {
-//        MarkerOptions options= new MarkerOptions();
-//        options.title("pos");
-//        IconFactory iconFactory=IconFactory.getInstance(MainActivity.this);
-//        Icon icon=iconFactory.fromResource(R.drawable.home);
-//        options.icon(icon);
-//        options.position(new LatLng(80.27,13.09));
 
-//        mapboxMap.addMarker(options);
-//        mapboxMap.addMarker(new MarkerOptions()
-//                .position(new LatLng(80.27, 13.09)));
-          mapboxMap.addMarker(new MarkerOptions()
-                .title("Intersection")
-                .snippet("H St NW with 15th St NW")
-                .position(new LatLng(80.27, 13.09)));
+        IconFactory iconFactory=IconFactory.getInstance(MainActivity.this);
+        Icon icon=iconFactory.fromResource(R.drawable.home22);
 
+        mapboxMap.addMarker(new MarkerOptions()
+                .position(new LatLng(10.5333161,77.8934473)).icon(icon)
+                .title("Marker: " )
+                .snippet("Snipped"));
+        mapboxMap.addMarker(new MarkerOptions()
+                .position(new LatLng(10.5334189,77.8924591)).icon(icon)
+                .title("Marker: " )
+                .snippet("Snipped2"));
+        mapboxMap.addMarker(new MarkerOptions()
+                .position(new LatLng(10.5319155,77.8916881)).icon(icon)
+                .title("Marker: " )
+                .snippet("Snipped3"));
         map=mapboxMap;
         map.addOnMapClickListener(this);
         enableLocation();
@@ -142,6 +148,7 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
 //            map.removeMarker(destinationMarker);
 //        }
         destinationMarker=map.addMarker(new MarkerOptions().position(point));
+//        Toast.makeText(this,"htfty",Toast.LENGTH_LONG).show();
         destinationPosition=Point.fromLngLat(point.getLongitude(),point.getLatitude());
 
         originPosition=Point.fromLngLat(originLocation.getLongitude(),originLocation.getLatitude());
@@ -272,4 +279,6 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
         }
         mapView.onDestroy();
     }
+
+
 }
