@@ -19,11 +19,8 @@ import com.mapbox.api.directions.v5.models.DirectionsResponse;
 import com.mapbox.api.directions.v5.models.DirectionsRoute;
 import com.mapbox.geojson.Point;
 import com.mapbox.mapboxsdk.Mapbox;
-import com.mapbox.mapboxsdk.annotations.Icon;
-import com.mapbox.mapboxsdk.annotations.IconFactory;
 import com.mapbox.mapboxsdk.annotations.Marker;
 import com.mapbox.mapboxsdk.annotations.MarkerOptions;
-import com.mapbox.mapboxsdk.annotations.MarkerViewOptions;
 import com.mapbox.mapboxsdk.camera.CameraUpdateFactory;
 import com.mapbox.mapboxsdk.geometry.LatLng;
 import com.mapbox.mapboxsdk.maps.MapView;
@@ -87,8 +84,8 @@ public class MainActivity extends AppCompatActivity  implements OnMapReadyCallba
 //        Icon icon=iconFactory.fromResource(R.drawable.home);
 //        options.icon(icon);
 //        options.position(new LatLng(80.27,13.09));
-//        mapboxMap.addMarker(options);
 
+//        mapboxMap.addMarker(options);
 //        mapboxMap.addMarker(new MarkerOptions()
 //                .position(new LatLng(80.27, 13.09)));
           mapboxMap.addMarker(new MarkerOptions()
